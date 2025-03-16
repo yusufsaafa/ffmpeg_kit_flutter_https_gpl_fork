@@ -1,1 +1,8 @@
 rootProject.name = 'ffmpeg-kit-flutter-android'
+
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}

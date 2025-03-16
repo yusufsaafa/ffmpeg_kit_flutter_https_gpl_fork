@@ -5,45 +5,42 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.0'
-    }
-}
-
-rootProject.allprojects {
-    repositories {
-        google()
-        mavenCentral()
+        classpath 'com.android.tools.build:gradle:7.3.0'  // AGP 7.x
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.7.10"  // Kotlin eklentisi (gerekiyorsa)
     }
 }
 
 apply plugin: 'com.android.library'
 
 android {
-    namespace "com.arthenica.ffmpegkit.flutter.https.gpl"
-    compileSdkVersion 31
+    namespace "com.arthenica.ffmpegkit.flutter.https.gpl"  // Namespace
+    compileSdk 34  // Android 14 (API 34)
 
     defaultConfig {
-        minSdkVersion 24
-        targetSdkVersion 31
-        versionCode 510
-        versionName "5.1.0"
+        minSdk 24  // Minimum Android 7.0 (Nougat)
+        targetSdk 34  // Hedef Android 14
+        versionCode 510  // Paket versiyon kodu
+        versionName "5.1.0"  // Paket versiyon ismi
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled false  // Proguard/R8 kapalı
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
     }
-    lintOptions {
-        disable 'GradleCompatible'
-    }
+
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8  // Java 8 desteği
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        disable 'GradleCompatible'  // Gereksiz lint uyarısını kapat
     }
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.2.0'
-    implementation 'com.arthenica:ffmpeg-kit-https-gpl:5.1'
+    implementation 'androidx.annotation:annotation:1.6.0'  // Güncel annotation kütüphanesi
+    implementation 'com.arthenica:ffmpeg-kit-https-gpl:5.1.3.LTS'  // FFmpegKit LTS sürümü
 }
